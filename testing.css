@@ -62,11 +62,6 @@ nav {
   padding: 20px 50px;
 }
 
-a {
-  text-decoration: none;
-  color: white;
-}
-
 .navTop {
   display: flex;
   align-items: center;
@@ -135,28 +130,27 @@ a {
 }
 
 .Post-office {
-  height: 70%;
+  height: 700px;
   position: absolute;
   bottom: 18%;
   left: 5%;
 }
 
 .Mail {
-  height: 60%;
+  height: 600px;
   position: absolute;
-  /* bottom: 18%; */
+  bottom: 18%;
   left: 5%;
 }
 
 .Truck {
-  height: 60%;
+  height: 600px;
   position: absolute;
   bottom: 18%;
   left: 5%;
 }
 
 .Delivery {
-  height: 80%;
 }
 
 .sliderWrapper {
@@ -209,7 +203,6 @@ a {
   font-weight: bold;
   font-size: 25px;
   left: 63%;
-  margin-top: 60px;
   cursor: pointer;
 }
 
@@ -239,12 +232,12 @@ a {
 }
 
 .featureImg {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
 }
 
 .featureTitle {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   margin: 20px;
 }
@@ -252,32 +245,4 @@ a {
 .featuredDesc {
   color: gray;
   width: 80%;
-  font-size: 20px;
-}
-
-.slideBg {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-@media (max-width: 1499px) {
-  .sliderTitle {
-    font-size: 40px;
-  }
-  .sliderPrice {
-    display: none;
-  }
-  .Post-office {
-    height: 60%;
-  }
-  .Mail {
-    height: 60%;
-  }
-  .Truck {
-    height: 60%;
-  }
-  .signUpButton {
-    padding: 5px;
-  }
 }
