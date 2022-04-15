@@ -5,6 +5,9 @@ $dbUsername = "root";
 $dbPassword = "";
 $dbName = "test";
 
-$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+$conn = new mysqli($dbServername, $dbUsername, $dbPassword, $dbName);
 
+if(!$conn){
+    echo "Failed";
+}
 ?>
