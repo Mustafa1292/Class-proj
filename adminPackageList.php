@@ -26,6 +26,6 @@
                 }
             }
         ?>
-        <input type="button" value="See Users" onclick="location='test.php'" />
+        <input type="button" value="See Users" onclick="location='adminUserList.php'" />
     </body>
 </html>
