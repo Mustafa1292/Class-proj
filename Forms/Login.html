@@ -9,14 +9,14 @@
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../stylesheets/styles.css" />
     <link rel="stylesheet" href="styles2.css" />
   </head>
   <body>
     <nav id="nav">
       <div class="navTop">
         <div class="navItem">
-          <a href="../../index.html">
+          <a href="../index.html">
             <h1>
               <span style="font-size: 36px; letter-spacing: 10px"
                 ><em> UH Post Office </em></span
@@ -29,7 +29,19 @@
       </div>
     </nav>
     <form action="action_page.php" method="POST">
+
       <br />
+
+      <div>
+        <label for="email" class="input"> Email: </label>
+        <input
+          type="Email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+      </div>
 
       <div>
         <label for="pass" class="input"> Password: </label>
@@ -44,16 +56,6 @@
 
       <br />
 
-      <div>
-        <label for="email" class="input"> Email: </label>
-        <input
-          type="Email"
-          id="Email"
-          name="Email"
-          placeholder="Email"
-          required
-        />
-      </div>
 
       <br />
       <div>
