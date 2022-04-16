@@ -15,6 +15,16 @@
         <?php
             print "Package list";
             print "PackageID" . " " . "name" . " " . "reciever" . " " . "Outgoinglocation" . " " . "status" . "<br>";
+            // Grab all the package info
+            $sql = "SELECT * FROM package;";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
+            if($resultCheck>0){
+                while($row = mysqli_fetch_assoc($result)){
+                    echo $row['packageID'] . " " . $row['name'] . " " . $row['receiver'] . " " . $row['outgoingLocation'] . " " . $row['status'] . "<br>";
+
+                }
+            }
         ?>
         <input type="button" value="See Users" onclick="location='test.php'" />
     </body>
