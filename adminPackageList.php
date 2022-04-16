@@ -13,8 +13,9 @@
     </head>
     <body>
         <?php
-            print "Pakcage list";
+            print "Package list";
+            print "PackageID" . " " . "name" . " " . "reciever" . " " . "Outgoinglocation" . " " . "status" . "<br>";
         ?>
-        <input type="button" value="Say Hi!" onclick="location='test.php'" />
+        <input type="button" value="See Users" onclick="location='test.php'" />
     </body>
 </html>
