@@ -17,6 +17,6 @@
         ?>
         <input type="button" value="See user list!" onclick="location='adminUserList.php'" />
         <input type="button" value="See package list!" onclick="location='adminPackageList.php'" />
-        <input type="button" value="Logout!" onclick="location='test.php'" />
+        <input type="button" value="Logout!" onclick="location='index.html'" />
     </body>
 </html>
