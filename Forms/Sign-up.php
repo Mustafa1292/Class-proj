@@ -3,14 +3,18 @@ include 'connnect.php';
 if(isset($_POST['submit'])) {
   $firstName=$_POST['fname'];
   $lastName=$_POST['lname'];
+  $address=$_POST['address'];
   $userName=$_POST['userName'];
   $passWord=$_POST['pass'];
   $email=$_POST['email'];
+  $isAdmin='No';
+  $isEmployee='No';
 
-  $sql="insert into `users` (firstName, lastName, userName, emailUsers, pwdUsers)
-  values('$firstName','$lastName', '$userName', '$email', '$passWord')";
+  $sql="insert into `users` (firstName, lastName, address, userName, emailUsers, pwdUsers)
+  values('$firstName','$lastName','$address', '$userName', '$email', '$passWord')";
   $result=mysqli_query($con,$sql);
   if($result) {
+    $_SESSION['uname'] = $userName;
     header('location:dashboard.php');
   } else {
      die(mysqli_error($con));
@@ -73,6 +77,17 @@ if(isset($_POST['submit'])) {
         />
       </div>
 
+      <br />
+      <div>
+        <label for="address" class="input"> Address: </label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          placeholder="address"
+          required
+        />
+      </div>
       <br />
 <div>
         <label for="userName" class="input"> Username: </label>

@@ -1,5 +1,32 @@
 <?php
+
 include 'connnect.php';
+
+if(isset($_POST['but_submit'])){
+
+  $uname = mysqli_real_escape_string($con,$_POST['email']);
+  $password = mysqli_real_escape_string($con,$_POST['pass']);
+
+  echo "$uname";
+  echo "$password";
+
+  if ($uname != "" && $password != ""){
+
+      $sql_query = "select count(*) as cntUser from users where emailUsers='".$uname."' and pwdUsers='".$password."'";
+      $result = mysqli_query($con,$sql_query);
+      $row = mysqli_fetch_array($result);
+
+      $count = $row['cntUser'];
+
+      if($count > 0){
+          $_SESSION['uname'] = $uname;
+          header('Location: home.php');
+      }else{
+          echo "Invalid username and password";
+      }
+    }
+
+  }
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +60,7 @@ include 'connnect.php';
       </div>
     </nav>
     <!-- <form action="action_page.php" method="POST"> -->
-    <form>
+    <form method=post>
 
       <br />
 
@@ -64,10 +91,7 @@ include 'connnect.php';
 
       <br />
       <div>
-        <button type=submit><a href="dashboard.php"> Submit
-        
-        
-</a></button>
+        <button type=submit name="but_submit">Submit</button>
       </div>
     </form>
   </body>

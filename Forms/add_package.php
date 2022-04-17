@@ -6,9 +6,12 @@ if(isset($_POST['submit'])) {
   $Address=$_POST['Address'];
   $Status=$_POST['Status'];
 
+  echo "$Weight";
+
   $sql="insert into `parcel` (weight, receiver, outgoingLocation, status)
   values('$Weight','$Reciever', '$Address', '$Status')";
   $result=mysqli_query($con,$sql);
+  echo "$Weight";
   if($result) {
     header('location:dashboard.php');
   } else {
