@@ -62,7 +62,7 @@ if(isset($_POST['submit'])) {
       </div>
       <br />
       <div>
-        <label for="Eeceiver" class="input"> Receiver: </label>
+        <label for="Receiver" class="input"> Receiver: </label>
         <input
           type="text"
           id="Receiver"
