@@ -1,6 +1,6 @@
 <?php
 include "connnect.php";
-session_start();
+
 
 // Check user login or not
 if(!isset($_SESSION['uname'])){

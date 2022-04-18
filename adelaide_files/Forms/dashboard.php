@@ -41,6 +41,7 @@ include 'connnect.php';
 <button style="background-color: #ffc107; border-color: #0d6efd; padding: 5px; margin: 10px; border-radius: .25rem"><a href="./add_package.php"> Add a package </button>
 <button style="background-color: #ffc107; border-color: #0d6efd; padding: 5px; margin: 10px; border-radius: .25rem"><a href="./login.php"> Log out </button>
 <button style="background-color: #ffc107; border-color: #0d6efd; padding: 5px; margin: 10px; border-radius: .25rem"><a href="./users.php"> View Users </button>
+<button style="background-color: #ffc107; border-color: #0d6efd; padding: 5px; margin: 10px; border-radius: .25rem"><a href="./epackages.php"> Personal Employee Packages </button>
 
 <table class="table">
   <thead>
