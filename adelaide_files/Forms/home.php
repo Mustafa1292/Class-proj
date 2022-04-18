@@ -1,6 +1,5 @@
 <?php
 include "connnect.php";
-session_start();
 
 // Check user login or not
 if(!isset($_SESSION['uname'])){
@@ -74,8 +73,6 @@ if($result){
         <td>'.$password.'</td>
         <td>
         <button><a href="update.php?updateid='.$id.'">Update</a></button>
-        <button><a href="delete.php?deleteid='.$id.'">Delete</a></button>
-        </td>
       </tr>';
     }
 
