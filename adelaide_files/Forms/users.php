@@ -7,6 +7,23 @@ if(!isset($_SESSION['uname'])){
     header('Location: Login.php');
 }
 
+$uname=$_SESSION['uname'];
+
+$sql="Select isAdmin from `users` where emailUsers='$uname'";
+
+$result=mysqli_query($con,$sql);
+
+//echo "$uname";
+
+/*if($result){
+    $row=mysqli_fetch_assoc($result);
+    $admin=$row['isAdmin'];
+    if($admin==0){
+        header('Location: dashboard.php');
+    }
+}*/
+
+
 echo "Welcome, user ".$_SESSION['uname'];
 
 // logout
@@ -14,9 +31,8 @@ if(isset($_POST['logout'])){
     session_destroy();
     header('Location: Login.php');
 }
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,10 +44,12 @@ if(isset($_POST['logout'])){
 </head>
 <body>
     <div class="container">
-    <button class="btn btn-primary" name="logout"><a href="login.php" class="text-light">Log out
+    <button class="btn btn-primary" name="return"><a href="dashboard.php" class="text-light">Return to Dash
     
     </button>
 
+    <button class="btn btn-primary" name="logout">Log out</button>
+    
     <table class="table">
   <thead>
     <tr>
@@ -42,6 +60,8 @@ if(isset($_POST['logout'])){
       <th scope="col">Username</th>
       <th scope="col">Email</th>
       <th scope="col">pwdUsers</th>
+      <th scope="col">Admin</th>
+      <th scope="col">Employee</th>
       <th scope="col">Operation</th>
     </tr>
   </thead>
@@ -50,13 +70,13 @@ if(isset($_POST['logout'])){
 
 $uname=$_SESSION['uname'];
 
-$sql="Select * from `users` where emailUsers='$uname'";
+$sql="Select * from `users`";
 
 $result=mysqli_query($con,$sql);
 
 //echo "$uname";
 if($result){
-  $row=mysqli_fetch_assoc($result);
+  while($row=mysqli_fetch_assoc($result)){
         $id=$row['id'];
         $fname=$row['firstName'];
         $lname=$row['lastName'];
@@ -64,6 +84,8 @@ if($result){
         $username=$row['userName'];
         $email=$row['emailUsers'];
         $password=$row['pwdUsers'];
+        $admin=$row['isAdmin'];
+        $employee=$row['isEmployee'];
         echo ' <tr>
         <th scope="row">'.$id.'</th>
         <td>'.$fname.'</td>
@@ -72,73 +94,19 @@ if($result){
         <td>'.$username.'</td>
         <td>'.$email.'</td>
         <td>'.$password.'</td>
+        <td>'.$admin.'</td>
+        <td>'.$employee.'</td>
         <td>
-        <button><a href="update.php?updateid='.$id.'">Update</a></button>
+        <button><a href="update2.php?updateid='.$id.'">Update</a></button>
         <button><a href="delete.php?deleteid='.$id.'">Delete</a></button>
         </td>
       </tr>';
+  }
     }
 
 ?>
 
 </tbody>
-</table>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">packageID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Receiver</th>
-      <th scope="col">Outgoing Loc</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-<?php
-$uname=$_SESSION['uname'];
-
-$sql="Select * from `users` where emailUsers='$uname'";
-
-$result=mysqli_query($con,$sql);
-
-//echo "$uname";
-if($result){
-  $row=mysqli_fetch_assoc($result);
-  $id=$row['id'];
-  $fname=$row['firstName'];
-  $lname=$row['lastName'];
-  $address=$row['address'];
-  $email=$row['emailUsers'];
-  $password=$row['pwdUsers'];
-}
-
-$sql="Select * from `parcel` where outgoingLocation='$address'";
-    $result2=mysqli_query($con,$sql);
-    if($result2){
-      while($row=mysqli_fetch_assoc($result2)){
-    //$row=mysqli_fetch_assoc($result2);
-    //echo "$p_id";
-        $p_id=$row['packageID'];
-        $weight=$row['weight'];
-        $receiver=$row['receiver'];
-        $outgoingLocation=$row['outgoingLocation'];
-        $status=$row['status'];
-        echo ' <tr>
-        <th scope="row">'.$p_id.'</th>
-        <td>'.$weight.'</td>
-        <td>'.$receiver.'</td>
-        <td>'.$outgoingLocation.'</td>
-        <td>'.$status.'</td>
-        <td>
-       
-      </tr>';
-      }
-    }
-
-?>
-
-  </tbody>
 </table>
   </div>
 </body>

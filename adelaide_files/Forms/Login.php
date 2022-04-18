@@ -20,7 +20,15 @@ if(isset($_POST['but_submit'])){
 
       if($count > 0){
           $_SESSION['uname'] = $uname;
+
+          $sqll="Select isAdmin from `users` where emailUsers='$uname'";
+          $resultt=mysqli_query($con,$sqll);
+          $roww=mysqli_fetch_assoc($resultt);
+          if($roww['isAdmin']=='1'){
+            header('location: dashboard.php');
+          }else{
           header('Location: home.php');
+          }
       }else{
           echo "Invalid username and password";
       }
