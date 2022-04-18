@@ -1,18 +1,20 @@
 <?php
 include 'connnect.php';
 if(isset($_POST['submit'])) {
-  $Weight=$_POST['Weight'];
-  $Reciever=$_POST['receiver'];
-  $Address=$_POST['Address'];
-  $Status=$_POST['Status'];
+  $firstName=$_POST['fname'];
+  $lastName=$_POST['lname'];
+  $address=$_POST['address'];
+  $userName=$_POST['userName'];
+  $passWord=$_POST['pass'];
+  $email=$_POST['email'];
+  $isAdmin='No';
+  $isEmployee='No';
 
-  echo "$Weight";
-
-  $sql="insert into `parcel` (weight, receiver, outgoingLocation, status)
-  values('$Weight','$Reciever', '$Address', '$Status')";
+  $sql="insert into `users` (firstName, lastName, address, userName, emailUsers, pwdUsers)
+  values('$firstName','$lastName','$address', '$userName', '$email', '$passWord')";
   $result=mysqli_query($con,$sql);
-  echo "$Weight";
   if($result) {
+    $_SESSION['uname'] = $userName;
     header('location:dashboard.php');
   } else {
      die(mysqli_error($con));
@@ -39,14 +41,14 @@ if(isset($_POST['submit'])) {
     <nav id="nav">
       <div class="navTop">
         <div class="navItem">
-          <a href="dashboard.php">
+          <a href="../index.html">
             <h1>
               <span style="font-size: 36px; letter-spacing: 10px"
                 ><em> UH Post Office </em></span
               >
             </h1>
             <h1><span style="font-size: 20px; letter-spacing: 5px"
-                ><em>Add a package</em></h1>
+                ><em>Sign up</em></h1>
           </a>
         </div>
       </div>
@@ -54,57 +56,76 @@ if(isset($_POST['submit'])) {
 
     <form method="POST">
       <div>
-        <label for="Weight" class="input"> Weight: </label>
+        <label for="fname" class="input"> First name: </label>
         <input
-          type="number"
-          id="Weight"
-          name="Weight"
-          placeholder="Weight"
+          type="text"
+          id="fname"
+          name="fname"
+          placeholder="First Name"
           required
         />
       </div>
       <br />
       <div>
-        <label for="Receiver" class="input"> Receiver: </label>
+        <label for="lname" class="input"> Last name: </label>
         <input
           type="text"
-          id="Receiver"
-          name="receiver"
-          placeholder="Receiver"
+          id="lname"
+          name="lname"
+          placeholder="Last Name"
           required
         />
       </div>
 
       <br />
-<div>
-        <label for="Address" class="input"> Shipping Address: </label>
+      <div>
+        <label for="address" class="input"> Address: </label>
         <input
           type="text"
-          id="Address"
-          name="Address"
-          placeholder="Shipping Address"
+          id="address"
+          name="address"
+          placeholder="address"
+          required
+        />
+      </div>
+      <br />
+<div>
+        <label for="userName" class="input"> Username: </label>
+        <input
+          type="text"
+          id="userName"
+          name="userName"
+          placeholder="Username"
           required
         />
       </div>
       <br/>
 
-      <br />
-<div>
-        
-    
-        <select id="Status" name="Status" required style="margin-left: 40%"> 
-            <option value="In progress"> In progress</options> 
-        </select> 
-
-        <!-- <input
-          type="numer"
-          id="Weight"
-          name="Weight"
-          placeholder="Weight"
+      <div>
+        <label for="pass" class="input"> Password: </label>
+        <input
+          type="password"
+          id="pass"
+          name="pass"
+          placeholder="Password"
           required
-        /> -->
+        />
       </div>
 
+      <br />
+
+      <div>
+        <label for="email" class="input"> Email: </label>
+        <input
+          type="Email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+      </div>
+
+      <br />
       <!-- <div>
         <button type="reset" > reset </button>
       </div> -->
