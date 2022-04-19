@@ -1,10 +1,10 @@
 .space {
-  display: flex;
+  margin-left: 60%;
 }
 
-button {
+/* button {
   margin: 190px;
   border-radius: 10px;
   padding: 40px;
   background-color: rgb(255, 77, 77);
-}
+} */
