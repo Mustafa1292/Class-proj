@@ -7,7 +7,7 @@
     //Initialize variables
     $firstName = "";
     $lastName = "";
-    /* $address = ""; */
+    $address = "";
     $userName = ""; //do check for this one.
     $emailUsers = ""; //do check for this one.
     $pwdUsers = "";
@@ -17,7 +17,7 @@
         //variable for username
         $firstName = $_POST['fname'];
         $lastName = $_POST['lname'];
-        /* $address = $_POST['address']; */
+        $address = $_POST['address'];
         $userName = $_POST['userName'];
         $emailUsers = $_POST['email'];
         $pwdUsers = $_POST['pass'];
@@ -109,7 +109,7 @@
       </div>
 
       <br />
-<!--       <div>
+       <div>
         <label for="address" class="input"> Address: </label>
         <input
           type="text"
@@ -119,8 +119,7 @@
           required
         />
       </div>
-      <br />
-      <br /> -->
+      <br /> 
 
       <div
         <?php if(isset($name_error)): ?>
