@@ -1,20 +1,18 @@
 <?php
+
 include 'connnect.php';
+$id=$_GET['updateid'];
+
 if(isset($_POST['submit'])) {
   $Weight=$_POST['Weight'];
-  $Sender1=$_POST['senderf'];
-  $Sender2=$_POST['senderl'];
   $Reciever=$_POST['receiver'];
   $Address=$_POST['Address'];
   $Status=$_POST['Status'];
 
-
-  $sql="insert into `parcel` (weight, senderf, senderl, receiver, outgoingLocation, status)
-  values('$Weight','$Sender1', '$Sender2','$Reciever', '$Address', '$Status')";
+  $sql="update `parcel` set weight='$Weight', receiver='$Reciever', outgoingLocation='$Address',status='$Status' where packageID=$id";
   $result=mysqli_query($con,$sql);
-  
-  
   if($result) {
+      // echo "update successfully";
     header('location:dashboard.php');
   } else {
      die(mysqli_error($con));
@@ -29,6 +27,7 @@ if(isset($_POST['submit'])) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Sign up From!</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
@@ -41,20 +40,20 @@ if(isset($_POST['submit'])) {
     <nav id="nav">
       <div class="navTop">
         <div class="navItem">
-          <a href="dashboard.php">
+          <a href="../index.html">
             <h1>
               <span style="font-size: 36px; letter-spacing: 10px"
                 ><em> UH Post Office </em></span
               >
             </h1>
             <h1><span style="font-size: 20px; letter-spacing: 5px"
-                ><em>Add a package</em></h1>
+                ><em>Update</em></h1>
           </a>
         </div>
       </div>
     </nav>
 
-    <form method="POST">
+       <form method="POST">
       <div>
         <label for="Weight" class="input"> Weight: </label>
         <input
@@ -65,36 +64,6 @@ if(isset($_POST['submit'])) {
           required
         />
       </div>
-      <br />
-
-      </div>
-      <br />
-      <div>
-        <label for="senderf" class="input"> Sender First Name: </label>
-        <input
-          type="text"
-          id="senderf"
-          name="senderf"
-          placeholder="Sender's first name"
-          required
-        />
-      </div>
-
-      </div>
-      <br />
-      <div>
-        <label for="senderl" class="input"> Sender Last Name: </label>
-        <input
-          type="text"
-          id="senderl"
-          name="senderl"
-          placeholder="Sender's last name"
-          required
-        />
-      </div>
-
-      <br />
-
       <br />
       <div>
         <label for="Receiver" class="input"> Receiver: </label>
@@ -126,6 +95,7 @@ if(isset($_POST['submit'])) {
     
         <select id="Status" name="Status" required style="margin-left: 40%"> 
             <option value="In progress"> In progress</options> 
+            <option value="Completed"> Completed</options> 
         </select> 
 
         <!-- <input
@@ -142,9 +112,16 @@ if(isset($_POST['submit'])) {
       </div> -->
 
       <br />
-      <div>
-        <button type="submit" name="submit" style="font-size: 20px; letter-spacing: 5px; padding: 15px; margin-left: 40%; margin-top: 3%; "> Submit </button>
-      </div>
+      <!-- <div> -->
+        <!-- <button type="submit" class="btn btn-primary"> Submit </button> -->
+      <!-- <button type="submit" name="submit" style="font-size: 20px; letter-spacing: 5px; padding: 15px; margin-left: 40%; margin-top: 3%; "> Submit </button> -->
+      <!-- </div> -->
+      <div class="d-grid col-4 mx-auto">
+  <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+</div>
     </form>
   </body>
 </html>
+
+
+?>

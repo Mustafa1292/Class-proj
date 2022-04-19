@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
     if($result){
         //echo "snger";
         //$_SESSION['uname'] = $username;
-       header('location:Login.php');
+       header('location:Login.php'); 
     }
 }
 ?>

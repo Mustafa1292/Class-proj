@@ -46,27 +46,27 @@ if(isset($_POST['submit'])){
         <form method="post">
             <div class="form-group">
                 <label>First Name</label>
-                <input type="text" class="form-control" placeholder="Correct your first name" name="firstName">
+                <input type="text" class="form-control" placeholder="Correct first name" name="firstName">
             </div>
             <div class="form-group">
                 <label>Last Name</label>
-                <input type="text" class="form-control" placeholder="Correct your last name" name="lastName">
+                <input type="text" class="form-control" placeholder="Correct last name" name="lastName">
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="text" class="form-control" placeholder="Enter your new address" name="address">
+                <input type="text" class="form-control" placeholder="Enter new address" name="address">
             </div>
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" class="form-control" placeholder="Enter your new username" name="userName">
+                <input type="text" class="form-control" placeholder="Enter new username" name="userName">
             </div>
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" placeholder="Enter your new email" name="emailUsers">
+                <input type="email" class="form-control" placeholder="Enter new email" name="emailUsers">
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="text" class="form-control" placeholder="Enter your new password" name="pwdUsers">
+                <input type="text" class="form-control" placeholder="Enter new password" name="pwdUsers">
             </div>
             <div class="form-group">
                 <label>Admin Status</label>

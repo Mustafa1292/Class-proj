@@ -24,7 +24,7 @@ $result=mysqli_query($con,$sql);
 }*/
 
 
-echo "Welcome, user ".$_SESSION['uname'];
+echo "<h5>Welcome, user</h5> ".$_SESSION['uname'];
 
 // logout
 if(isset($_POST['logout'])){
@@ -40,15 +40,32 @@ if(isset($_POST['logout'])){
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>User Dash</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="../stylesheets/styles.css" />
+    <link rel="stylesheet" href="styles2.css" />
 </head>
 <body>
-    <div class="container">
-    <button class="btn btn-primary" name="return"><a href="dashboard.php" class="text-light">Return to Dash
+  <nav id="nav">
+      <div class="navTop">
+        <div class="navItem">
+          <a href="../index.html" style="text-decoration: none">
+            <h1>
+              <span style="font-size: 36px; letter-spacing: 10px"
+                ><em> UH Post Office </em></span
+              >
+            </h1>
+            <h1><span style="font-size: 20px; letter-spacing: 5px"
+                ><em>Users</em></h1>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div>
+    <button class="btn btn-primary" name="return" style="margin: 5px"><a href="dashboard.php" >Return to Dash</a>
     
     </button>
 
-    <button class="btn btn-primary" name="logout">Log out</button>
+    <button class="btn btn-danger" name="logout"><a href="login.php" >Log out</a></button>
     
     <table class="table">
   <thead>
@@ -73,7 +90,7 @@ $uname=$_SESSION['uname'];
 $sql="Select * from `users`";
 
 $result=mysqli_query($con,$sql);
-
+$admin=0;
 //echo "$uname";
 if($result){
   while($row=mysqli_fetch_assoc($result)){
@@ -97,8 +114,8 @@ if($result){
         <td>'.$admin.'</td>
         <td>'.$employee.'</td>
         <td>
-        <button><a href="update2.php?updateid='.$id.'">Update</a></button>
-        <button><a href="delete.php?deleteid='.$id.'">Delete</a></button>
+        <button class="btn btn-primary"><a href="update2.php?updateid='.$id.'">Update</a></button>
+        <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'">Delete</a></button>
         </td>
       </tr>';
   }

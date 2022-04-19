@@ -29,7 +29,7 @@ include 'connnect.php';
               >
             </h1>
             <h1><span style="font-size: 20px; letter-spacing: 5px"
-                ><em>Dash board</em></h1>
+                ><em> Admin Dash board</em></h1>
           <!-- </a> -->
         </div>
       </div>
@@ -38,16 +38,17 @@ include 'connnect.php';
 
 <!-- the table -->
 
-<button style="background-color: #ffc107; border-color: #0d6efd; padding: 5px; margin: 10px; border-radius: .25rem"><a href="./add_package.php"> Add a package </button>
-<button style="background-color: #ffc107; border-color: #0d6efd; padding: 5px; margin: 10px; border-radius: .25rem"><a href="./login.php"> Log out </button>
-<button style="background-color: #ffc107; border-color: #0d6efd; padding: 5px; margin: 10px; border-radius: .25rem"><a href="./users.php"> View Users </button>
-<button style="background-color: #ffc107; border-color: #0d6efd; padding: 5px; margin: 10px; border-radius: .25rem"><a href="./epackages.php"> Personal Employee Packages </button>
+<button class="btn btn-success" style="margin: 5px"><a href="./add_package.php"> Add a package </a></button>
+<button class="btn btn-primary" style="margin: 5px"><a href="./users.php"> View Users </a></button>
+<button class="btn btn-info" style="margin: 5px"><a href="./epackages.php"> Personal Employee Packages </a></button>
+<button class="btn btn-danger" style="margin: 5px"><a href="./logout.php"> Log out </a></button>
 
 <table class="table">
   <thead>
     <tr>
       <th scope="col">Package ID</th>
       <th scope="col">Weight</th>
+      <th scope="col">Sender</th>
       <th scope="col">Receiver</th>
       <th scope="col">Shipping Address</th>
       <th scope="col">Status</th>
@@ -62,15 +63,22 @@ include 'connnect.php';
     while($row=mysqli_fetch_assoc($result)){
       $id=$row['packageID'];
       $weight=$row['weight'];
+      $sender1=$row['senderf'];
+      $sender2=$row['senderl'];
       $receiver=$row['receiver'];
       $address=$row['outgoingLocation'];
       $status=$row['status'];
       echo '<tr>
       <th scope="row">'.$id.'</th>
       <td>'.$weight.'</td>
+      <td>'.$sender1." ".$sender2.'</td>
       <td>'.$receiver.'</td>
       <td>'.$address.'</td>
       <td>'.$status.'</td>
+      <td> 
+      <button class="btn btn-primary"> <a href="package_update.php?updateid='.$id.'" class="text-light">Update</a></button>
+      <button class="btn btn-danger"> <a href="delete_package.php?deleteid='.$id.'" class="text-light">Delete</a></button>
+      </td>
     </tr>';
     }
   }

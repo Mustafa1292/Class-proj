@@ -38,7 +38,7 @@ include 'connnect.php';
 
 <!-- the table -->
 
-<button style="background-color: #ffc107; border-color: #0d6efd; padding: 5px; margin: 10px; border-radius: .25rem"><a href="./dashboard.php"> Back to Dashboard </button>
+<button class="btn btn-warning" style="margin: 5px"><a href="./dashboard.php"> Back to Dashboard </button>
 
 
 <table class="table">
@@ -46,6 +46,7 @@ include 'connnect.php';
     <tr>
       <th scope="col">Package ID</th>
       <th scope="col">Weight</th>
+      <th scope="col">Sender</th>
       <th scope="col">Receiver</th>
       <th scope="col">Shipping Address</th>
       <th scope="col">Status</th>
@@ -80,11 +81,14 @@ include 'connnect.php';
            $p_id=$row['packageID'];
            $weight=$row['weight'];
            $receiver=$row['receiver'];
+           $sender1=$row['senderf'];
+           $sender2=$row['senderl'];
            $outgoingLocation=$row['outgoingLocation'];
            $status=$row['status'];
            echo ' <tr>
            <th scope="row">'.$p_id.'</th>
            <td>'.$weight.'</td>
+           <td>'.$senderf." ".$senderl.'</td>
            <td>'.$receiver.'</td>
            <td>'.$outgoingLocation.'</td>
            <td>'.$status.'</td>
@@ -99,7 +103,68 @@ include 'connnect.php';
   </tbody>
 </table>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Package ID</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Sender</th>
+      <th scope="col">Receiver</th>
+      <th scope="col">Shipping Address</th>
+      <th scope="col">Status</th>
+      
+    </tr>
+  </thead>
+  <tbody>
 
+  <?php
+   $uname=$_SESSION['uname'];
+
+   $sql="Select * from `users` where emailUsers='$uname'";
+   
+   $result=mysqli_query($con,$sql);
+   
+   //echo "$uname";
+   if($result){
+     $row=mysqli_fetch_assoc($result);
+     $id=$row['id'];
+     $fname=$row['firstName'];
+     $lname=$row['lastName'];
+     $address=$row['address'];
+     $email=$row['emailUsers'];
+     $password=$row['pwdUsers'];
+   }
+   
+   $sql="Select * from `parcel` where senderf='$fname' and senderl='$lname'";
+       $result2=mysqli_query($con,$sql);
+       if($result2){
+         while($row=mysqli_fetch_assoc($result2)){
+       //$row=mysqli_fetch_assoc($result2);
+       //echo "$p_id";
+           $p_id=$row['packageID'];
+           $weight=$row['weight'];
+           $sender1=$row['senderf'];
+           $sender2=$row['senderl'];
+           $receiver=$row['receiver'];
+           $outgoingLocation=$row['outgoingLocation'];
+           $status=$row['status'];
+           echo ' <tr>
+           <th scope="row">'.$p_id.'</th>
+           <td>'.$weight.'</td>
+           <td>'.$sender1." ".$sender2.'</td>
+           <td>'.$receiver.'</td>
+           <td>'.$outgoingLocation.'</td>
+           <td>'.$status.'</td>
+           <td>
+          
+         </tr>';
+         }
+       }
+
+?>
+    
+  </tbody>
+</table>
 
 </body>
 </html>

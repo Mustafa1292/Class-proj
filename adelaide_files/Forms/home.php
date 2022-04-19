@@ -31,6 +31,10 @@ if(isset($_POST['logout'])){
     
     </button>
 
+    <button class="btn btn-primary" name="package"><a href="add_cus_package.php" class="text-light">Send a Package
+    
+    </button>
+
     <table class="table">
   <thead>
     <tr>
@@ -86,6 +90,7 @@ if($result){
     <tr>
       <th scope="col">packageID</th>
       <th scope="col">Name</th>
+      <th scope="col">Sender</th>
       <th scope="col">Receiver</th>
       <th scope="col">Outgoing Loc</th>
       <th scope="col">Status</th>
@@ -118,12 +123,15 @@ $sql="Select * from `parcel` where outgoingLocation='$address'";
     //echo "$p_id";
         $p_id=$row['packageID'];
         $weight=$row['weight'];
+        $sender1=$row['senderf'];
+        $sender2=$row['senderl'];
         $receiver=$row['receiver'];
         $outgoingLocation=$row['outgoingLocation'];
         $status=$row['status'];
         echo ' <tr>
         <th scope="row">'.$p_id.'</th>
         <td>'.$weight.'</td>
+        <td>'.$sender1." ".$sender2.'</td>
         <td>'.$receiver.'</td>
         <td>'.$outgoingLocation.'</td>
         <td>'.$status.'</td>
@@ -137,6 +145,65 @@ $sql="Select * from `parcel` where outgoingLocation='$address'";
 
   </tbody>
 </table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">packageID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Sender</th>
+      <th scope="col">Receiver</th>
+      <th scope="col">Outgoing Loc</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php
+   $uname=$_SESSION['uname'];
+
+   $sql="Select * from `users` where emailUsers='$uname'";
+   
+   $result=mysqli_query($con,$sql);
+   
+   //echo "$uname";
+   if($result){
+     $row=mysqli_fetch_assoc($result);
+     $id=$row['id'];
+     $fname=$row['firstName'];
+     $lname=$row['lastName'];
+     $address=$row['address'];
+     $email=$row['emailUsers'];
+     $password=$row['pwdUsers'];
+   }
+   
+   $sql="Select * from `parcel` where senderf='$fname' and senderl='$lname'";
+       $result2=mysqli_query($con,$sql);
+       if($result2){
+         while($row=mysqli_fetch_assoc($result2)){
+       //$row=mysqli_fetch_assoc($result2);
+       //echo "$p_id";
+           $p_id=$row['packageID'];
+           $weight=$row['weight'];
+           $sender1=$row['senderf'];
+           $sender2=$row['senderl'];
+           $receiver=$row['receiver'];
+           $outgoingLocation=$row['outgoingLocation'];
+           $status=$row['status'];
+           echo ' <tr>
+           <th scope="row">'.$p_id.'</th>
+           <td>'.$weight.'</td>
+           <td>'.$sender1." ".$sender2.'</td>
+           <td>'.$receiver.'</td>
+           <td>'.$outgoingLocation.'</td>
+           <td>'.$status.'</td>
+           <td>
+          
+         </tr>';
+         }
+       }
+
+?>
+</tbody>
   </div>
 </body>
 

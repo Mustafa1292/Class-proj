@@ -1,41 +1,4 @@
-<?php
 
-include 'connnect.php';
-
-if(isset($_POST['but_submit'])){
-
-  $uname = mysqli_real_escape_string($con,$_POST['email']);
-  $password = mysqli_real_escape_string($con,$_POST['pass']);
-
-  echo "$uname";
-  echo "$password";
-
-  if ($uname != "" && $password != ""){
-
-      $sql_query = "select count(*) as cntUser from users where emailUsers='".$uname."' and pwdUsers='".$password."'";
-      $result = mysqli_query($con,$sql_query);
-      $row = mysqli_fetch_array($result);
-
-      $count = $row['cntUser'];
-
-      if($count > 0){
-          $_SESSION['uname'] = $uname;
-
-          $sqll="Select isAdmin from `users` where emailUsers='$uname'";
-          $resultt=mysqli_query($con,$sqll);
-          $roww=mysqli_fetch_assoc($resultt);
-          if($roww['isAdmin']=='1'){
-            header('location: dashboard.php');
-          }else{
-          header('Location: home.php');
-          }
-      }else{
-          echo "Invalid username and password";
-      }
-    }
-
-  }
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +6,8 @@ if(isset($_POST['but_submit'])){
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>User Login</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
@@ -99,8 +64,47 @@ if(isset($_POST['but_submit'])){
 
       <br />
       <div>
-        <button type=submit name="but_submit">Submit</button>
+        <button type=submit name="but_submit" class="btn btn-primary" style="margin-left:40%">Submit</button>
       </div>
     </form>
   </body>
 </html>
+
+<?php
+
+include 'connnect.php';
+
+if(isset($_POST['but_submit'])){
+
+  $uname = mysqli_real_escape_string($con,$_POST['email']);
+  $password = mysqli_real_escape_string($con,$_POST['pass']);
+
+  echo  "<h3 style='color:red; text-align:center;'>$uname </h3>";
+  echo "<h3 style='color:red; text-align:center;'> $password </h3>";
+
+  if ($uname != "" && $password != ""){
+
+      $sql_query = "select count(*) as cntUser from users where emailUsers='".$uname."' and pwdUsers='".$password."'";
+      $result = mysqli_query($con,$sql_query);
+      $row = mysqli_fetch_array($result);
+
+      $count = $row['cntUser'];
+
+      if($count > 0){
+          $_SESSION['uname'] = $uname;
+
+          $sqll="Select isAdmin from `users` where emailUsers='$uname'";
+          $resultt=mysqli_query($con,$sqll);
+          $roww=mysqli_fetch_assoc($resultt);
+          if($roww['isAdmin']=='1'){
+            header('location: dashboard.php');
+          }else{
+          header('Location: home.php');
+          }
+      }else{
+          echo "<h2 style='color:red; text-align:center;'> Invalid username and password </h2>";
+      }
+    }
+
+  }
+?>
