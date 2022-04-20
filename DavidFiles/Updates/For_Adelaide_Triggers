@@ -1,9 +1,0 @@
-CREATE TRIGGER `user_trg_delete` BEFORE DELETE ON `users`
- FOR EACH ROW INSERT INTO logs VALUES(null, OLD.id, OLD.emailUsers, OLD.pwdUsers,"User Deleted", NOW())
-
-CREATE TRIGGER `user_trg_insert` AFTER INSERT ON `users`
- FOR EACH ROW INSERT INTO logs VALUES(null, NEW.id, NEW.emailUsers, NEW.pwdUsers,"User Inserted", NOW())
-
-CREATE TRIGGER `user_trg_update` BEFORE UPDATE ON `users`
- FOR EACH ROW INSERT INTO logs VALUES(null, NEW.id, NEW.emailUsers, NEW.pwdUsers, "User Updated", NOW())
-
