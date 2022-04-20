@@ -2,7 +2,7 @@
 
 session_start();
 
-$con=new mysqli('localhost', 'root', 'David1021?', 'test');
+$con=new mysqli('localhost', 'root', '', 'test');
 
 if(!$con) {
   die(mysqli_error($con));
