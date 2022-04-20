@@ -38,7 +38,7 @@ if(isset($_POST['logout'])){
               >
             </h1>
             <h1><span style="font-size: 20px; letter-spacing: 5px;"
-                ><em> Admin Dash board</em></h1>
+                ><em> User Dash board</em></h1>
           <!-- </a> -->
         </div>
       </div>
