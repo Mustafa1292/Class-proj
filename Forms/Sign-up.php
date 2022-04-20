@@ -15,7 +15,7 @@ if(isset($_POST['submit'])) {
   $result=mysqli_query($con,$sql);
   if($result) {
     $_SESSION['uname'] = $userName;
-    header('location:login.php');
+    header('location:Login.php');
   } else {
      die(mysqli_error($con));
   }
