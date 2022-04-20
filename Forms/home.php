@@ -101,7 +101,7 @@ if($result){
 
 </tbody>
 </table></br>
-  <h3 style="color:black"> Incoming ackages</h3>
+  <h3 style="color:black"> Incoming packages</h3>
   </br>
 <table class="table">
   <thead>
