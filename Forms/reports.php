@@ -31,7 +31,7 @@
       </div>
     </nav> 
     <div>
-      <canvas id="myChart" width="400" height="400"></canvas>
+      <canvas id="myChart" width="10%" height="10%"></canvas>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
