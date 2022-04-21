@@ -100,6 +100,10 @@ echo'
   </br>';
   
   echo "<h3>For our last quarter we had "," $calc total users and $packs total packages shipped</h3>";
+  $totalQuartUser = intval($id);
+  $totalActiveUser = intval($row[0]);
+  $totalQuartUser = intval($id1);
+  $totalQuartUser = intval($raw[0]);
   $sql = "INSERT INTO otherReport (totalQuartUser, totalActiveUser, totalQuarterPackages, totalActivePackages)
   VALUES ($id, $rows[0], $id1, $raw[0])";
 
@@ -128,7 +132,7 @@ echo'
       label: 'Report Information',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [, 10, 5, 2],
+      data: [$totalQuartUser, $totalActiveUser, $totalQuartUser, $totalQuartUser],
     }]
   };
 
