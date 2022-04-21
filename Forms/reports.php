@@ -105,7 +105,7 @@ echo'
   $totalQuarterPackages = intval($id1);
   $totalActivePackages = intval($raw[0]);
   $sql = "INSERT INTO otherReport (totalQuartUser, totalActiveUser, totalQuarterPackages, totalActivePackages)
-  VALUES ($id, $rows[0], $id1, $raw[0])";
+  VALUES ($totalQuartUser, $totalActiveUser, $totalQuarterPackages, $totalActivePackages)";
   // totalQuartUser	totalActiveUser	totalQuarterPackages	totalActivePackages
   $arr=[$totalQuartUser, $totalActiveUser, $totalQuarterPackages, $totalActivePackages];
 
