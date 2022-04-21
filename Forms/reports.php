@@ -102,10 +102,12 @@ echo'
   echo "<h3>For our last quarter we had "," $calc total users and $packs total packages shipped</h3>";
   $totalQuartUser = intval($id);
   $totalActiveUser = intval($row[0]);
-  $totalQuartUser = intval($id1);
-  $totalQuartUser = intval($raw[0]);
+  $totalQuarterPackages = intval($id1);
+  $totalActivePackages = intval($raw[0]);
   $sql = "INSERT INTO otherReport (totalQuartUser, totalActiveUser, totalQuarterPackages, totalActivePackages)
   VALUES ($id, $rows[0], $id1, $raw[0])";
+  // totalQuartUser	totalActiveUser	totalQuarterPackages	totalActivePackages
+  $arr=[$totalQuartUser, $totalActiveUser, $totalQuarterPackages, $totalActivePackages];
 
   if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
