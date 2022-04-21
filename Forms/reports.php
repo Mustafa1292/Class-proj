@@ -101,7 +101,7 @@ echo'
   
   echo "<h3>For our last quarter we had "," $calc total users and $packs total packages shipped</h3>";
   $sql = "INSERT INTO otherReport (totalQuartUser, totalActiveUser, totalQuarterPackages, totalActivePackages)
-  VALUES ($id, $rows, $id1, $raw[0])";
+  VALUES ($id, $rows[0], $id1, $raw[0])";
 
   if (mysqli_query($conn, $sql)) {
     echo "New record created successfully";
@@ -128,7 +128,7 @@ echo'
       label: 'Report Information',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2],
+      data: [, 10, 5, 2],
     }]
   };
 
