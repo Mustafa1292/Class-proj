@@ -109,13 +109,13 @@ echo'
   // totalQuartUser	totalActiveUser	totalQuarterPackages	totalActivePackages
   $arr=[$totalQuartUser, $totalActiveUser, $totalQuarterPackages, $totalActivePackages];
 
-  if (mysqli_query($conn, $sql)) {
+  if (mysqli_query($con, $sql)) {
     echo "New record created successfully";
   } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Error: " . $sql . "<br>" . mysqli_error($con);
   }
 
-  mysqli_close($conn);
+  mysqli_close($con);
 
   ?>
 </table>
