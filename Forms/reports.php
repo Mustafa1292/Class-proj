@@ -95,6 +95,11 @@ echo'
       <td>'.$raw[0].'</td>
       <td>Manager: Sidney</td>
     </tr>
+    <tr>
+      <th scope="row">Total revenue this quarter</th>
+      <td>"5.49"</td>
+      <td>Manager: Dave</td>
+    </tr>
     
   </tbody></br>
   </br>';
