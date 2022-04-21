@@ -99,7 +99,7 @@ echo'
   </tbody></br>
   </br>';
   
-echo "<h3>For our last quarter we had "," $calc total users and $packs total packages shipped</h3>";
+  echo "<h3>For our last quarter we had "," $calc total users and $packs total packages shipped</h3>";
   $sql = "INSERT INTO otherReport (totalQuartUser, totalActiveUser, totalQuarterPackages, totalActivePackages)
   VALUES ($id, $rows, $id1, $raw[0])";
 
@@ -116,26 +116,24 @@ echo "<h3>For our last quarter we had "," $calc total users and $packs total pac
 
 <script>
   const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
+    'Total Quarter Users',
+    'Total Active Users',
+    'Total Quarter Packages',
+    'Total Active Packages',
   ];
 
   const data = {
     labels: labels,
     datasets: [{
-      label: 'My First dataset',
+      label: 'Report Information',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45],
+      data: [0, 10, 5, 2],
     }]
   };
 
   const config = {
-    type: 'line',
+    type: 'bar',
     data: data,
     options: {}
   };
