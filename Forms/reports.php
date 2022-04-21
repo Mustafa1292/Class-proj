@@ -109,8 +109,13 @@ echo'
   // totalQuartUser	totalActiveUser	totalQuarterPackages	totalActivePackages
   $arr=[$totalQuartUser, $totalActiveUser, $totalQuarterPackages, $totalActivePackages];
 
+  const val1='<?php echo $totalQuarterUser; ?>';
+  const val2='<?php echo $totalActiveUser; ?>';
+  const val3='<?php echo $totalQuarterPackages; ?>';
+  const val4='<?php echo $totalActivePackages; ?>';
+
   if (mysqli_query($con, $sql)) {
-    echo "New record created successfully";
+    //echo "New record created successfully";
   } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($con);
   }
@@ -134,7 +139,7 @@ echo'
       label: 'Report Information',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [$totalQuartUser, $totalActiveUser, $totalQuartUser, $totalQuartUser],
+      data: [val1, val2, val3, val4],
     }]
   };
 
@@ -151,6 +156,5 @@ echo'
     config
   );
 </script>
-a
 </body>
 </html>
