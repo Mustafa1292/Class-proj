@@ -48,7 +48,7 @@
 
             $result = mysqli_query($con, $query) or die(mysqli_error($con));
             //place header location for the login page / dashboard page .
-            header('location: login.php');
+            header('location: Login.php');
             //exit();  
         }
     }

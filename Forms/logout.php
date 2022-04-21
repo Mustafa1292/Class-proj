@@ -29,7 +29,7 @@ session_destroy();
         </div>
       </div>
     </nav>
-        <button type=submit name="submit" class="btn btn-primary"><a href="login.php">return</a></button>
+        <button type=submit name="submit" class="btn btn-primary"><a href="Login.php">return</a></button>
       </div>
 </body>
 </html>

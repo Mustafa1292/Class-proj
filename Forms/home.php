@@ -44,7 +44,7 @@ if(isset($_POST['logout'])){
       </div>
     </nav>
     <div class="container">
-    <button class="btn btn-primary" name="logout" style=" margin: 5px;"><a href="login.php" class="text-light">Log out
+    <button class="btn btn-primary" name="logout" style=" margin: 5px;"><a href="Login.php" class="text-light">Log out
 </a>
     </button>
 

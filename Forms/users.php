@@ -65,7 +65,7 @@ if(isset($_POST['logout'])){
     
     </button>
 
-    <button class="btn btn-danger" name="logout"><a href="login.php" >Log out</a></button>
+    <button class="btn btn-danger" name="logout"><a href="Login.php" >Log out</a></button>
     
     <table class="table">
   <thead>
