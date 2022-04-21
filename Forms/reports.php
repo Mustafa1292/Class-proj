@@ -100,6 +100,17 @@ echo'
   </br>';
   
 echo "<h3>For our last quarter we had "," $calc total users and $packs total packages shipped</h3>";
+  $sql = "INSERT INTO otherReport (totalQuartUser, totalActiveUser, totalQuarterPackages, totalActivePackages)
+  VALUES ($id, $rows, $id1, $raw[0])";
+
+  if (mysqli_query($conn, $sql)) {
+    echo "New record created successfully";
+  } else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+  }
+
+  mysqli_close($conn);
+
   ?>
 </table>
 
