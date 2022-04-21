@@ -97,7 +97,7 @@ echo'
     </tr>
     <tr>
       <th scope="row">Total revenue this quarter</th>
-      <td>"5.49"</td>
+      <td> 5.49</td>
       <td>Manager: Dave</td>
     </tr>
     
