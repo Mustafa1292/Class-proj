@@ -139,7 +139,7 @@ echo'
       label: 'Report Information',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [val1, val2, val3, val4],
+      data: [33, 23, 11, 9],
     }]
   };
 
