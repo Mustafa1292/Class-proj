@@ -132,7 +132,7 @@ echo'
 
 <script>
   const labels = [
-    'Total CHANGE Users',
+    'Total Quarter Users',
     'Total Active Users',
     'Total Quarter Packages',
     'Total Active Packages',
@@ -144,7 +144,7 @@ echo'
       label: 'Report Information',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [33, 23, 11, 9],
+      data: [0, 23, 11, 9],
     }]
   };
 
