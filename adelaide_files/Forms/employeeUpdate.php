@@ -2,7 +2,7 @@
 include 'connnect.php';
 $id = $_GET['updateid'];
 
-//$uname = $_SESSION['uname'];
+$uname = $_SESSION['uname'];
 
 $sqll = "Select * from `users` where id='$id'";
 
@@ -20,7 +20,17 @@ if ($resultt) {
     $_SESSION['pwd'] = $roww['pwdUsers'];
     $_SESSION['admin'] = $roww['isAdmin'];
     $_SESSION['employee'] = $roww['isEmployee'];
+    //$stat=$roww['isAdmin'];
     $_SESSION['officeLoc'] = $roww['officeLoc'];
+}
+
+
+$sq="Select isAdmin from `users` where emailUsers='$uname'";
+
+$resul=mysqli_query($con,$sq);
+if($resul){
+    $ro=mysqli_fetch_assoc($resul);
+    $stat=$ro['isAdmin'];
 }
 
 if (isset($_POST['leave'])) {
@@ -43,9 +53,12 @@ if (isset($_POST['submit'])) {
 
     $result = mysqli_query($con, $sql);
     if ($result) {
-        //echo "snger";
-        //$_SESSION['uname'] = $username;
-        header('location:users.php');
+        if($stat=='1'){
+            header('location:users.php');
+        }
+        else{
+        header('location:users2.php');
+        }
     }
 }
 ?>

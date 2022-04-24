@@ -21,11 +21,21 @@ if($resultt){
         $_SESSION['email']=$roww['emailUsers'];
         $_SESSION['pwd']=$roww['pwdUsers'];
         $_SESSION['admin']=$roww['isAdmin'];
+        
         $_SESSION['employee']=$roww['isEmployee'];
         //$_SESSION['officeLoc']=$roww['officeLoc'];
 
        
 }
+
+$sq="Select isAdmin from `users` where emailUsers='$uname'";
+
+$resul=mysqli_query($con,$sq);
+if($resul){
+    $ro=mysqli_fetch_assoc($resul);
+    $stat=$ro['isAdmin'];
+}
+
 /*
 if(isset($_POST['leave'])){
     header('location: users.php');}
@@ -46,9 +56,12 @@ if(isset($_POST['submit'])){
    
     $result=mysqli_query($con,$sql);
     if($result){
-        //echo "snger";
-        //$_SESSION['uname'] = $username;
-       header('location:users.php');
+        if($stat=='1'){
+            header('location:users.php');
+        }
+        else{
+        header('location:users2.php');
+        }
     }
 }
 ?>

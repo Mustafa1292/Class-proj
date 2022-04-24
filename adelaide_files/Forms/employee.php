@@ -52,11 +52,9 @@ if($resultt){
 <!-- the table -->
 
 <button class="btn btn-success" style="margin: 5px"><a href="./add_package.php"> Add a package </a></button>
-<button class="btn btn-primary" style="margin: 5px"><a href="./users.php"> View Users </a></button>
+<button class="btn btn-primary" style="margin: 5px"><a href="./users2.php"> View Users </a></button>
 <button class="btn btn-info" style="margin: 5px"><a href="./epackages.php"> Personal Employee Packages </a></button>
 <button class="btn btn-info" style="margin: 5px"><a href="./all.php"> View All Office's Packages </a></button>
-<button class="btn btn-warning" style="margin: 5px"><a href="./reports.php"> Data reports </a></button>
-<button class="btn btn-dark" style="margin: 5px"><a href="./logs.php"> Logs </a></button>
 <button class="btn btn-danger" style="margin: 5px"><a href="./logout.php"> Log out </a></button>
 
 
@@ -110,7 +108,6 @@ if($resultt){
       <td>'.$status.'</td>
       <td> 
       <button class="btn btn-primary"> <a href="package_update.php?updateid='.$id.'" class="text-light">Update</a></button>
-      <button class="btn btn-danger"> <a href="delete_package.php?deleteid='.$id.'" class="text-light">Delete</a></button>
       </td>
     </tr>';
     }
