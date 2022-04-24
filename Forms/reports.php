@@ -113,7 +113,7 @@ echo'
   $sql = "INSERT INTO otherReport (totalQuartUser, totalActiveUser, totalQuarterPackages, totalActivePackages)
   VALUES ($totalQuartUser, $totalActiveUser, $totalQuarterPackages, $totalActivePackages)";
   // totalQuartUser	totalActiveUser	totalQuarterPackages	totalActivePackages
-  $arr[]=[$totalQuartUser, $totalActiveUser, $totalQuarterPackages, $totalActivePackages];
+  $arr[]=[$totalQuartUser, $totalActiveUser, $totalQuarterPackages, $totalActivePackages, 5.49];
 
 
   const val1='<?php echo $totalQuarterUser; ?>';
