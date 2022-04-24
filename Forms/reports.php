@@ -113,13 +113,14 @@ echo'
   $sql = "INSERT INTO otherReport (totalQuartUser, totalActiveUser, totalQuarterPackages, totalActivePackages)
   VALUES ($totalQuartUser, $totalActiveUser, $totalQuarterPackages, $totalActivePackages)";
   // totalQuartUser	totalActiveUser	totalQuarterPackages	totalActivePackages
-  $arr=[$totalQuartUser, $totalActiveUser, $totalQuarterPackages, $totalActivePackages];
+  $arr[]=[$totalQuartUser, $totalActiveUser, $totalQuarterPackages, $totalActivePackages];
+
 
   const val1='<?php echo $totalQuarterUser; ?>';
   const val2='<?php echo $totalActiveUser; ?>';
   const val3='<?php echo $totalQuarterPackages; ?>';
   const val4='<?php echo $totalActivePackages; ?>';
-
+  const arrayEncode='<?php echo json_encode($arr) ?>';
   if (mysqli_query($con, $sql)) {
     //echo "New record created successfully";
   } else {
@@ -146,7 +147,7 @@ echo'
       label: 'Report Information',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [0, 23, 11, 9],
+      data: '<?php echo json_encode($arr) ?>',
     }]
   };
 
