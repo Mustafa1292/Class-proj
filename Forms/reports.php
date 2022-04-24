@@ -132,7 +132,7 @@ echo'
 
 <script>
   const labels = [
-    'Total Quarter Users',
+    'Total CHANGE Users',
     'Total Active Users',
     'Total Quarter Packages',
     'Total Active Packages',
