@@ -66,6 +66,7 @@ if($resultP){
   }
 }
 
+// Grab data for reports
 
 
 $calc = $rows[0] + 6;
@@ -136,6 +137,7 @@ echo'
     'Total Active Users',
     'Total Quarter Packages',
     'Total Active Packages',
+    'Total Revenue this quarter',
   ];
 
   const data = {
