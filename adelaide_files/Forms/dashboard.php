@@ -41,23 +41,42 @@ include 'connnect.php';
 <button class="btn btn-success" style="margin: 5px"><a href="./add_package.php"> Add a package </a></button>
 <button class="btn btn-primary" style="margin: 5px"><a href="./users.php"> View Users </a></button>
 <button class="btn btn-info" style="margin: 5px"><a href="./epackages.php"> Personal Employee Packages </a></button>
+<button class="btn btn-warning" style="margin: 5px"><a href="./reports.php"> Data reports </a></button>
+<button class="btn btn-dark" style="margin: 5px"><a href="./logs.php"> Logs </a></button>
 <button class="btn btn-danger" style="margin: 5px"><a href="./logout.php"> Log out </a></button>
+
+
+
 
 <table class="table">
   <thead>
+  <h3 style="color:black"> Incoming Packages For Houston Location</h3>
     <tr>
       <th scope="col">Package ID</th>
       <th scope="col">Weight</th>
       <th scope="col">Sender</th>
       <th scope="col">Receiver</th>
       <th scope="col">Shipping Address</th>
+      <th scope="col">Current Office</th>
       <th scope="col">Status</th>
       
     </tr>
   </thead>
   <tbody>
     <?php
-  $sql="Select * from `parcel`";
+    $uname=$_SESSION['uname'];
+
+    $sqll="Select * from `users` where emailUsers='$uname'";
+
+    
+
+    $resultt = mysqli_query($con, $sqll);
+    if ($resultt) {
+        $officeLoc=$roww['officeLoc'];
+        $_SESSION['empStat']=$roww['isEmployee'];
+    }
+
+  $sql="Select * from `parcel` where office='Houston'";
   $result=mysqli_query($con, $sql);
   if($result) {
     while($row=mysqli_fetch_assoc($result)){
@@ -67,6 +86,7 @@ include 'connnect.php';
       $sender2=$row['senderl'];
       $receiver=$row['receiver'];
       $address=$row['outgoingLocation'];
+      $office=$row['office'];
       $status=$row['status'];
       echo '<tr>
       <th scope="row">'.$id.'</th>
@@ -74,6 +94,7 @@ include 'connnect.php';
       <td>'.$sender1." ".$sender2.'</td>
       <td>'.$receiver.'</td>
       <td>'.$address.'</td>
+      <td>'.$office.'</td>
       <td>'.$status.'</td>
       <td> 
       <button class="btn btn-primary"> <a href="package_update.php?updateid='.$id.'" class="text-light">Update</a></button>
@@ -85,9 +106,136 @@ include 'connnect.php';
 
 ?>
     
+ 
+    
   </tbody>
 </table>
 
+<table class="table">
+  <thead>
+  <h3 style="color:black"> Incoming Packages For San Antonio Location</h3>
+    <tr>
+      <th scope="col">Package ID</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Sender</th>
+      <th scope="col">Receiver</th>
+      <th scope="col">Shipping Address</th>
+      <th scope="col">Current Office</th>
+      <th scope="col">Status</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $uname=$_SESSION['uname'];
+
+    $sqll="Select * from `users` where emailUsers='$uname'";
+
+    
+
+    $resultt = mysqli_query($con, $sqll);
+    if ($resultt) {
+        $officeLoc=$roww['officeLoc'];
+        $_SESSION['empStat']=$roww['isEmployee'];
+    }
+
+  $sql="Select * from `parcel` where office='San Antonio'";
+  $result=mysqli_query($con, $sql);
+  if($result) {
+    while($row=mysqli_fetch_assoc($result)){
+      $id=$row['packageID'];
+      $weight=$row['weight'];
+      $sender1=$row['senderf'];
+      $sender2=$row['senderl'];
+      $receiver=$row['receiver'];
+      $address=$row['outgoingLocation'];
+      $office=$row['office'];
+      $status=$row['status'];
+      echo '<tr>
+      <th scope="row">'.$id.'</th>
+      <td>'.$weight.'</td>
+      <td>'.$sender1." ".$sender2.'</td>
+      <td>'.$receiver.'</td>
+      <td>'.$address.'</td>
+      <td>'.$office.'</td>
+      <td>'.$status.'</td>
+      <td> 
+      <button class="btn btn-primary"> <a href="package_update.php?updateid='.$id.'" class="text-light">Update</a></button>
+      <button class="btn btn-danger"> <a href="delete_package.php?deleteid='.$id.'" class="text-light">Delete</a></button>
+      </td>
+    </tr>';
+    }
+  }
+
+?>
+    
+ 
+    
+  </tbody>
+</table>
+
+<table class="table">
+  <thead>
+  <h3 style="color:black"> Incoming Packages For El Paso Location</h3>
+    <tr>
+      <th scope="col">Package ID</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Sender</th>
+      <th scope="col">Receiver</th>
+      <th scope="col">Shipping Address</th>
+      <th scope="col">Current Office</th>
+      <th scope="col">Status</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $uname=$_SESSION['uname'];
+
+    $sqll="Select * from `users` where emailUsers='$uname'";
+
+    
+
+    $resultt = mysqli_query($con, $sqll);
+    if ($resultt) {
+        $officeLoc=$roww['officeLoc'];
+        $_SESSION['empStat']=$roww['isEmployee'];
+    }
+
+  $sql="Select * from `parcel` where office='El Paso'";
+  $result=mysqli_query($con, $sql);
+  if($result) {
+    while($row=mysqli_fetch_assoc($result)){
+      $id=$row['packageID'];
+      $weight=$row['weight'];
+      $sender1=$row['senderf'];
+      $sender2=$row['senderl'];
+      $receiver=$row['receiver'];
+      $address=$row['outgoingLocation'];
+      $office=$row['office'];
+      $status=$row['status'];
+      echo '<tr>
+      <th scope="row">'.$id.'</th>
+      <td>'.$weight.'</td>
+      <td>'.$sender1." ".$sender2.'</td>
+      <td>'.$receiver.'</td>
+      <td>'.$address.'</td>
+      <td>'.$office.'</td>
+      <td>'.$status.'</td>
+      <td> 
+      <button class="btn btn-primary"> <a href="package_update.php?updateid='.$id.'" class="text-light">Update</a></button>
+      <button class="btn btn-danger"> <a href="delete_package.php?deleteid='.$id.'" class="text-light">Delete</a></button>
+      </td>
+    </tr>';
+    }
+  }
+
+?>
+    
+ 
+    
+  </tbody>
+</table>
 
 
 </body>

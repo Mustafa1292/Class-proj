@@ -1,25 +1,57 @@
 <?php
-include 'connnect.php';
-if(isset($_POST['submit'])) {
-  $firstName=$_POST['fname'];
-  $lastName=$_POST['lname'];
-  $address=$_POST['address'];
-  $userName=$_POST['userName'];
-  $passWord=$_POST['pass'];
-  $email=$_POST['email'];
-  $isAdmin='No';
-  $isEmployee='No';
 
-  $sql="insert into `users` (firstName, lastName, address, userName, emailUsers, pwdUsers)
-  values('$firstName','$lastName','$address', '$userName', '$email', '$passWord')";
-  $result=mysqli_query($con,$sql);
-  if($result) {
-    $_SESSION['uname'] = $userName;
-    header('location:login.php');
-  } else {
-     die(mysqli_error($con));
-  }
-}
+
+    include 'connnect.php';
+   //include 'config/db.php';
+
+    //Initialize variables
+    $firstName = "";
+    $lastName = "";
+    $address = ""; 
+    $userName = ""; //do check for this one.
+    $emailUsers = ""; //do check for this one.
+    $pwdUsers = "";
+    $hashedPwd = "";
+
+
+    if(isset($_POST['submit'])){ 
+        //variable for username
+        $firstName = $_POST['fname'];
+        $lastName = $_POST['lname'];
+        $address = $_POST['address']; 
+        $userName = $_POST['userName'];
+        $emailUsers = $_POST['email'];
+        $pwdUsers = $_POST['pass'];
+        $hashed_pwd = $_POST['pass'];
+        
+
+        //$sql_fn = "SELECT * FROM users WHERE firstName= '$firstName'";
+        //$sql_ln = "SELECT * FROM users WHERE lastName= '$lastName'";
+        $sql_u = "SELECT * FROM users WHERE userName= '$userName'";
+        $sql_e = "SELECT * FROM users WHERE emailUsers= '$emailUsers'";
+
+        //---------------------------THESE ARE THE QUERY SEARCHES/VARIABLES----------------------------//
+
+        $res_u = mysqli_query($con, $sql_u) or die(mysqli_error($con)); //userName query
+        $res_e = mysqli_query($con, $sql_e) or die(mysqli_error($con)); //email query
+
+        //---------------------------------------------------------------------------------------------//
+        if(mysqli_num_rows($res_u) > 0){
+            $name_error = "Sorry, this username already exists, please try another.";
+        }
+        else if(mysqli_num_rows($res_e) > 0){
+            $email_error = "Sorry, this email is already in use.";
+        }
+        else{
+            $query = "INSERT INTO users (firstName, lastName, address, userName, emailUsers, pwdUsers, hashed_pwd) 
+                VALUES('$firstName', '$lastName','$address','$userName', '$emailUsers', '$pwdUsers','" . password_hash($pwdUsers,PASSWORD_DEFAULT) . "')";
+
+            $result = mysqli_query($con, $query) or die(mysqli_error($con));
+            //place header location for the login page / dashboard page .
+            header('location: Login.php');
+            //exit();  
+        }
+    }
 
 ?>
 
@@ -63,6 +95,7 @@ if(isset($_POST['submit'])) {
           name="fname"
           placeholder="First Name"
           required
+          value= "<?php echo $firstName; ?>"
         />
       </div>
       <br />
@@ -74,11 +107,12 @@ if(isset($_POST['submit'])) {
           name="lname"
           placeholder="Last Name"
           required
+          value= "<?php echo $lastName; ?>"
         />
       </div>
 
       <br />
-      <div>
+       <div>
         <label for="address" class="input"> Address: </label>
         <input
           type="text"
@@ -86,10 +120,16 @@ if(isset($_POST['submit'])) {
           name="address"
           placeholder="address"
           required
+          value = "<?php echo $address; ?>"
         />
       </div>
       <br />
-<div>
+
+      <div
+        <?php if(isset($name_error)): ?>
+          class = "form_error"
+        <?php endif; ?>
+      >
         <label for="userName" class="input"> Username: </label>
         <input
           type="text"
@@ -97,7 +137,11 @@ if(isset($_POST['submit'])) {
           name="userName"
           placeholder="Username"
           required
+          value= "<?php echo $userName; ?>"
         />
+        <?php if(isset($name_error)): ?>
+          <span><?php echo $name_error; ?></span>
+          <?php endif; ?>
       </div>
       <br/>
 
@@ -114,7 +158,12 @@ if(isset($_POST['submit'])) {
 
       <br />
 
-      <div>
+      <div
+        <?php if(isset($email_error)): ?>
+          class = "form_error"
+        <?php endif; ?>
+      
+      >
         <label for="email" class="input"> Email: </label>
         <input
           type="Email"
@@ -122,7 +171,11 @@ if(isset($_POST['submit'])) {
           name="email"
           placeholder="Email"
           required
+          value= "<?php echo $emailUsers; ?>"
         />
+        <?php if(isset($email_error)): ?>
+          <span><?php echo $email_error; ?></span>
+          <?php endif; ?>
       </div>
 
       <br />

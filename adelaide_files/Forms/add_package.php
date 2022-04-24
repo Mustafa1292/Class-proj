@@ -6,16 +6,37 @@ if(isset($_POST['submit'])) {
   $Sender2=$_POST['senderl'];
   $Reciever=$_POST['receiver'];
   $Address=$_POST['Address'];
+  $OfficeLoc=$_POST['officeLoc'];
   $Status=$_POST['Status'];
 
 
-  $sql="insert into `parcel` (weight, senderf, senderl, receiver, outgoingLocation, status)
-  values('$Weight','$Sender1', '$Sender2','$Reciever', '$Address', '$Status')";
+  $sql="insert into `parcel` (weight, senderf, senderl, receiver, outgoingLocation, office, status)
+  values('$Weight','$Sender1', '$Sender2','$Reciever', '$Address', '$OfficeLoc','$Status')";
   $result=mysqli_query($con,$sql);
+
+
+  $uname=$_SESSION['uname'];
+
+    $sqll="Select * from `users` where emailUsers='$uname'";
+
+    
+
+    $resultt = mysqli_query($con, $sqll);
+    if ($resultt) {
+      $roww=mysqli_fetch_assoc($resultt);
+        $stat=$roww['isAdmin'];
+    }
   
   
   if($result) {
-    header('location:dashboard.php');
+    
+    //echo '$stat';
+    if($stat=='1'){
+      header('location:dashboard.php');
+    }
+    else{
+    header('location:employee.php');
+    }
   } else {
      die(mysqli_error($con));
   }
@@ -121,27 +142,28 @@ if(isset($_POST['submit'])) {
       <br/>
 
       <br />
-<div>
+      <div>
+
+<div style = "position:relative; left:0px; top:-30px;">
+                <label for="officeLoc">Initial Office</label>
+                <div style = "position:relative; left:15px; top:45px;">
+                <select name="officeLoc"  id="officeLoc" required style="margin-left: 40%">
+                    <option value="Houston">Houston</option>
+                    <option value="San Antonio">San Antonio</option>
+                    <option value="El Paso">El Paso</option>
+                </select>
+                </div>
+            </div>
         
+
+            <div style = "position:relative; left:14px; top:30px;">
     
         <select id="Status" name="Status" required style="margin-left: 40%"> 
             <option value="In progress"> In progress</options> 
         </select> 
 
-        <!-- <input
-          type="numer"
-          id="Weight"
-          name="Weight"
-          placeholder="Weight"
-          required
-        /> -->
-      </div>
-
-      <!-- <div>
-        <button type="reset" > reset </button>
-      </div> -->
-
-      <br />
+</div>
+</br>
       <div>
         <button type="submit" name="submit" style="font-size: 20px; letter-spacing: 5px; padding: 15px; margin-left: 40%; margin-top: 3%; "> Submit </button>
       </div>

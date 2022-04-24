@@ -1,4 +1,50 @@
+<?php
 
+include 'connnect.php';
+
+// echo $pwdUsers;
+if(isset($_POST['but_submit'])){
+
+  $uname = mysqli_real_escape_string($con,$_POST['email']);
+  $password = mysqli_real_escape_string($con,$_POST['pass']);
+
+/*   echo  "<h3 style='color:red; text-align:center;'>$uname </h3>";
+  echo "<h3 style='color:red; text-align:center;'> $password </h3>"; */
+
+  if ($uname != "" && $password != ""){
+
+      $sql_query = "select count(*) as cntUser from users where emailUsers='".$uname."' and pwdUsers='".$password."'";
+      $result = mysqli_query($con,$sql_query);
+      $row = mysqli_fetch_array($result);
+
+      $count = $row['cntUser'];
+
+      if($count > 0){
+          $_SESSION['uname'] = $uname;
+
+          $sqll="Select isAdmin from `users` where emailUsers='$uname'";
+          $resultt=mysqli_query($con,$sqll);
+          $roww=mysqli_fetch_assoc($resultt);
+
+          $sqlll="Select isEmployee from `users` where emailUsers='$uname'";
+          $resulttt=mysqli_query($con,$sqlll);
+          $rowww=mysqli_fetch_assoc($resulttt);
+          if($roww['isAdmin']=='1'){
+            header('location: dashboard.php');
+          }
+          else if($rowww['isEmployee']=='1'){
+            header('location: employee.php');}
+            else{
+          header('Location: home.php');
+          }
+      }else{
+          $login_error = "Invalid Username or Password";
+/*           echo "<h2 style='color:red; text-align:center;'> Invalid username and password </h2>";
+ */      }
+    }
+
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +83,11 @@
 
       <br />
 
-      <div>
+      <div
+        <?php if(isset($login_error)): ?>
+          class = "form_error";
+        <?php endif; ?>
+      >
         <label for="email" class="input"> Email: </label>
         <input
           type="Email"
@@ -46,9 +96,16 @@
           placeholder="Email"
           required
         />
+        <?php if(isset($login_error)): ?>
+          <span><?php echo $login_error; ?></span>
+          <?php endif; ?>
       </div>
 
-      <div>
+      <div
+        <?php if(isset($login_error)): ?>
+          class = "form_error";
+        <?php endif; ?>
+      >
         <label for="pass" class="input"> Password: </label>
         <input
           type="password"
@@ -57,6 +114,9 @@
           placeholder="Password"
           required
         />
+        <?php if(isset($login_error)): ?>
+          <span><?php echo $login_error; ?></span>
+          <?php endif; ?>
       </div>
 
       
@@ -70,41 +130,3 @@
   </body>
 </html>
 
-<?php
-
-include 'connnect.php';
-
-if(isset($_POST['but_submit'])){
-
-  $uname = mysqli_real_escape_string($con,$_POST['email']);
-  $password = mysqli_real_escape_string($con,$_POST['pass']);
-
-  echo  "<h3 style='color:red; text-align:center;'>$uname </h3>";
-  echo "<h3 style='color:red; text-align:center;'> $password </h3>";
-
-  if ($uname != "" && $password != ""){
-
-      $sql_query = "select count(*) as cntUser from users where emailUsers='".$uname."' and pwdUsers='".$password."'";
-      $result = mysqli_query($con,$sql_query);
-      $row = mysqli_fetch_array($result);
-
-      $count = $row['cntUser'];
-
-      if($count > 0){
-          $_SESSION['uname'] = $uname;
-
-          $sqll="Select isAdmin from `users` where emailUsers='$uname'";
-          $resultt=mysqli_query($con,$sqll);
-          $roww=mysqli_fetch_assoc($resultt);
-          if($roww['isAdmin']=='1'){
-            header('location: dashboard.php');
-          }else{
-          header('Location: home.php');
-          }
-      }else{
-          echo "<h2 style='color:red; text-align:center;'> Invalid username and password </h2>";
-      }
-    }
-
-  }
-?>

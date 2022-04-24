@@ -26,11 +26,37 @@ $result=mysqli_query($con,$sql);
 
 echo "<h5>Welcome, user</h5> ".$_SESSION['uname'];
 
+$uname=$_SESSION['uname'];
+
+$sqll="Select isAdmin from `users` where emailUsers='$uname'";
+
+$resultt=mysqli_query($con,$sqll);
+//echo "$uname";
+
+if($resultt){
+    $roww=mysqli_fetch_assoc($resultt);
+    if($roww['isAdmin']=='1'){
+      $locc="dashboard.php";
+      $_SESSION['l']=$locc;
+    }else{
+      $locc="employee.php";
+      $_SESSION['l']=$locc;
+    }}
 // logout
 if(isset($_POST['logout'])){
     session_destroy();
     header('Location: Login.php');
 }
+
+if(isset($_POST['return'])){
+  if($roww['isEmployee']=='1'){
+  header('Location: employee.php');
+  }
+  else{
+    header('location: dashboard.php');
+  }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -48,7 +74,7 @@ if(isset($_POST['logout'])){
   <nav id="nav">
       <div class="navTop">
         <div class="navItem">
-          <a href="../index.html" style="text-decoration: none">
+          <a href="dashboard.php" style="text-decoration: none">
             <h1>
               <span style="font-size: 36px; letter-spacing: 10px"
                 ><em> UH Post Office </em></span
@@ -61,13 +87,16 @@ if(isset($_POST['logout'])){
       </div>
     </nav>
     <div>
-    <button class="btn btn-primary" name="return" style="margin: 5px"><a href="dashboard.php" >Return to Dash</a>
+    <button type="submit"button class="btn btn-primary" name="return" style="margin: 5px"><a href=<?php echo $_SESSION['l']?>>Return to Dash</a>
     
     </button>
 
     <button class="btn btn-danger" name="logout"><a href="login.php" >Log out</a></button>
     
-    <table class="table">
+    
+
+<table class="table">
+<h3 style="color:black"> Customer Data</h3>
   <thead>
     <tr>
     <th scope="col">ID</th>
@@ -77,8 +106,6 @@ if(isset($_POST['logout'])){
       <th scope="col">Username</th>
       <th scope="col">Email</th>
       <th scope="col">pwdUsers</th>
-      <th scope="col">Admin</th>
-      <th scope="col">Employee</th>
       <th scope="col">Operation</th>
     </tr>
   </thead>
@@ -87,7 +114,7 @@ if(isset($_POST['logout'])){
 
 $uname=$_SESSION['uname'];
 
-$sql="Select * from `users`";
+$sql="Select * from `users` where isEmployee!='1'";
 
 $result=mysqli_query($con,$sql);
 $admin=0;
@@ -101,8 +128,8 @@ if($result){
         $username=$row['userName'];
         $email=$row['emailUsers'];
         $password=$row['pwdUsers'];
-        $admin=$row['isAdmin'];
-        $employee=$row['isEmployee'];
+       
+          $loc="update2.php?updateid=";
         echo ' <tr>
         <th scope="row">'.$id.'</th>
         <td>'.$fname.'</td>
@@ -110,11 +137,9 @@ if($result){
         <td>'.$address.'</td>
         <td>'.$username.'</td>
         <td>'.$email.'</td>
-        <td>'.$password.'</td>
-        <td>'.$admin.'</td>
-        <td>'.$employee.'</td>
+        <td>*********</td>
         <td>
-        <button class="btn btn-primary"><a href="update2.php?updateid='.$id.'">Update</a></button>
+        <button class="btn btn-primary"><a href='.$loc.''.$id.'>Update</a></button>
         <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'">Delete</a></button>
         </td>
       </tr>';
@@ -125,6 +150,71 @@ if($result){
 
 </tbody>
 </table>
+<table class="table">
+<h3 style="color:black"> Employee Data</h3>
+  <thead>
+    <tr>
+    <th scope="col">ID</th>
+      <th scope="col">firstName</th>
+      <th scope="col">lastName</th>
+      <th scope="col">Address</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">pwdUsers</th>
+      <th scope="col">Office</th>
+      <th scope="col">Admin</th>
+      <th scope="col">Employee</th>
+      <th scope="col">Operation</th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php
+
+$uname=$_SESSION['uname'];
+
+$sql="Select * from `users` where isEmployee!='0'";
+
+$result=mysqli_query($con,$sql);
+$admin=0;
+//echo "$uname";
+if($result){
+  while($row=mysqli_fetch_assoc($result)){
+        $id=$row['id'];
+        $fname=$row['firstName'];
+        $lname=$row['lastName'];
+        $address=$row['address'];
+        $username=$row['userName'];
+        $email=$row['emailUsers'];
+        $password=$row['pwdUsers'];
+        $office=$row['officeLoc'];
+        $admin=$row['isAdmin'];
+        $employee=$row['isEmployee'];
+          $loc="employeeUpdate.php?updateid=";
+
+        echo ' <tr>
+        <th scope="row">'.$id.'</th>
+        <td>'.$fname.'</td>
+        <td>'.$lname.'</td>
+        <td>'.$address.'</td>
+        <td>'.$username.'</td>
+        <td>'.$email.'</td>
+        <td>*********</td>
+        <td>'.$office.'</td>
+        <td>'.$admin.'</td>
+        <td>'.$employee.'</td>
+        <td>
+        <button class="btn btn-primary"><a href='.$loc.''.$id.'>Update</a></button>
+        <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'">Delete</a></button>
+        </td>
+      </tr>';
+  }
+    }
+
+?>
+
+</tbody>
+</table>
+
   </div>
 </body>
 

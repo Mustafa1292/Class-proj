@@ -6,7 +6,7 @@ if(!isset($_SESSION['uname'])){
     header('Location: Login.php');
 }
 
-echo "Welcome, user ".$_SESSION['uname'];
+echo "<h4>Welcome, user </h4>".$_SESSION['uname'];
 
 // logout
 if(isset($_POST['logout'])){
@@ -24,15 +24,32 @@ if(isset($_POST['logout'])){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>User Dash</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
+
+    <link rel="stylesheet" href="styles2.css" />
+      </head>
 <body>
+  <nav id="nav">
+      <div class="navTop">
+        <div class="navItem">
+          <!-- <a href="../index.html"> -->
+            <h1>
+              <span style="font-size: 36px; letter-spacing: 10px"
+                ><em> UH Post Office </em></span
+              >
+            </h1>
+            <h1><span style="font-size: 20px; letter-spacing: 5px;"
+                ><em> User Dash board</em></h1>
+          <!-- </a> -->
+        </div>
+      </div>
+    </nav>
     <div class="container">
-    <button class="btn btn-primary" name="logout"><a href="login.php" class="text-light">Log out
-    
+    <button class="btn btn-primary" name="logout" style=" margin: 5px;"><a href="login.php" class="text-light">Log out
+</a>
     </button>
 
     <button class="btn btn-primary" name="package"><a href="add_cus_package.php" class="text-light">Send a Package
-    
+</a>
     </button>
 
     <table class="table">
@@ -74,25 +91,66 @@ if($result){
         <td>'.$address.'</td>
         <td>'.$username.'</td>
         <td>'.$email.'</td>
-        <td>'.$password.'</td>
+        <td>**********</td>
         <td>
-        <button><a href="update.php?updateid='.$id.'">Update</a></button>
+        <button class="btn btn-primary"><a href="update.php?updateid='.$id.'">Update</a></button>
       </tr>';
     }
 
 ?>
 
 </tbody>
-</table>
-
+</table></br>
+<div>
+  <h3 style="color:black"> Incoming packages</h3>
+  <?php
+  $uname=$_SESSION['uname'];//holds username from user.
+  $sql = "SELECT * FROM users WHERE emailUsers='$uname'";
+  $result = mysqli_query($con,$sql);
+  $date = date("Y-m-d H:i:s");
+  if($result){
+    $row=mysqli_fetch_assoc($result);
+    $fname=$row['firstName'];
+    //echo $fname; //Preform name search in parcel table
+    $sql2 = "SELECT * FROM parcel WHERE receiver= '$fname'";
+    $result2 = mysqli_query($con,$sql2);
+    if($result2){
+      $row2=mysqli_fetch_assoc($result2);
+      $time=$row2['time_stamp'];
+      //echo $time;
+      //echo $date;
+      $d1 = date_create($time);
+      $d2 = date_create($date);
+      $diff = date_diff($d1,$d2); 
+      $num = $diff->format('%a');
+      if($num >= 7){
+        ?>
+        <h3 style="color:red"> Delayed </h3> <?php
+        //Add Button to Contact Us.
+      }
+      else{
+        ?>
+        <h3 style="color:green"> On Time </h3> <?php
+        
+      }
+      
+    }
+    
+  }
+  ?>
+  
+  
+  </br>
+</div>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">packageID</th>
-      <th scope="col">Name</th>
+      <th scope="col">Weight</th>
       <th scope="col">Sender</th>
       <th scope="col">Receiver</th>
       <th scope="col">Outgoing Loc</th>
+      <th scope="col">Current Office</th>
       <th scope="col">Status</th>
     </tr>
   </thead>
@@ -127,6 +185,7 @@ $sql="Select * from `parcel` where outgoingLocation='$address'";
         $sender2=$row['senderl'];
         $receiver=$row['receiver'];
         $outgoingLocation=$row['outgoingLocation'];
+        $office=$row['office'];
         $status=$row['status'];
         echo ' <tr>
         <th scope="row">'.$p_id.'</th>
@@ -134,6 +193,7 @@ $sql="Select * from `parcel` where outgoingLocation='$address'";
         <td>'.$sender1." ".$sender2.'</td>
         <td>'.$receiver.'</td>
         <td>'.$outgoingLocation.'</td>
+        <td>'.$office.'</td>
         <td>'.$status.'</td>
         <td>
        
@@ -144,16 +204,18 @@ $sql="Select * from `parcel` where outgoingLocation='$address'";
 ?>
 
   </tbody>
-</table>
-
+</table></br>
+<h3 style="color:black"> Outgoing packages</h3>
+  </br>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">packageID</th>
-      <th scope="col">Name</th>
+      <th scope="col">Weight</th>
       <th scope="col">Sender</th>
       <th scope="col">Receiver</th>
       <th scope="col">Outgoing Loc</th>
+      <th scope="col">Current Office</th>
       <th scope="col">Status</th>
     </tr>
   </thead>
@@ -188,6 +250,7 @@ $sql="Select * from `parcel` where outgoingLocation='$address'";
            $sender2=$row['senderl'];
            $receiver=$row['receiver'];
            $outgoingLocation=$row['outgoingLocation'];
+           $office=$row['office'];
            $status=$row['status'];
            echo ' <tr>
            <th scope="row">'.$p_id.'</th>
@@ -195,6 +258,7 @@ $sql="Select * from `parcel` where outgoingLocation='$address'";
            <td>'.$sender1." ".$sender2.'</td>
            <td>'.$receiver.'</td>
            <td>'.$outgoingLocation.'</td>
+           <td>'.$office.'</td>
            <td>'.$status.'</td>
            <td>
           
