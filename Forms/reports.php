@@ -31,7 +31,7 @@
       </div>
     </nav> 
     <div>
-      <canvas id="myChart" width="10%" height="10%"></canvas>
+      <canvas id="myChart" style="width='10%', height='10%'"></canvas>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -146,7 +146,7 @@ echo'
       label: 'Report Information',
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgb(255, 99, 132)',
-      data: [33, 23, 11, 9],
+      data: [0, 23, 11, 9],
     }]
   };
 
