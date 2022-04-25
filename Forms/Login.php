@@ -25,9 +25,16 @@ if(isset($_POST['but_submit'])){
           $sqll="Select isAdmin from `users` where emailUsers='$uname'";
           $resultt=mysqli_query($con,$sqll);
           $roww=mysqli_fetch_assoc($resultt);
+
+          $sqlll="Select isEmployee from `users` where emailUsers='$uname'";
+          $resulttt=mysqli_query($con,$sqlll);
+          $rowww=mysqli_fetch_assoc($resulttt);
           if($roww['isAdmin']=='1'){
             header('location: dashboard.php');
-          }else{
+          }
+          else if($rowww['isEmployee']=='1'){
+            header('location: employee.php');}
+            else{
           header('Location: home.php');
           }
       }else{

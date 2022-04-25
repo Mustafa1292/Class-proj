@@ -72,7 +72,6 @@ if($resultP){
 $calc = $rows[0] + 6;
 $packs = $raw[0] + 29;
 echo'
-
   <tbody>
     <tr>
       <th scope="row">Total users this quarter</th>

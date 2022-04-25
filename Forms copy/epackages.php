@@ -1,29 +1,5 @@
 <?php
 include 'connnect.php';
-
-if(isset($_POST['submit'])){
-
-  $uname=$_SESSION['uname'];
-
-    $sqll="Select * from `users` where emailUsers='$uname'";
-
-    
-
-    $resultt = mysqli_query($con, $sqll);
-    if ($resultt) {
-      $roww=mysqli_fetch_assoc($resultt);
-        $stat=$roww['isAdmin'];
-    }
-  
-    
-    //echo '$stat';
-    if($stat=='1'){
-      header('location:dashboard.php');
-    }
-    else{
-    header('location:employee.php');
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +38,7 @@ if(isset($_POST['submit'])){
 
 <!-- the table -->
 
-<button type="submit" name="submit" button class="btn btn-warning" style="margin: 5px"> Back to Dashboard </button>
+<button class="btn btn-warning" style="margin: 5px"><a href="./dashboard.php"> Back to Dashboard </button>
 
 
 <table class="table">
@@ -112,7 +88,7 @@ if(isset($_POST['submit'])){
            echo ' <tr>
            <th scope="row">'.$p_id.'</th>
            <td>'.$weight.'</td>
-           <td>'.$sender1." ".$sender2.'</td>
+           <td>'.$senderf." ".$senderl.'</td>
            <td>'.$receiver.'</td>
            <td>'.$outgoingLocation.'</td>
            <td>'.$status.'</td>

@@ -91,7 +91,7 @@ if(isset($_POST['return'])){
     
     </button>
 
-    <button class="btn btn-danger" name="logout"><a href="Login.php" >Log out</a></button>
+    <button class="btn btn-danger" name="logout"><a href="login.php" >Log out</a></button>
     
     
 
@@ -140,7 +140,7 @@ if($result){
         <td>*********</td>
         <td>
         <button class="btn btn-primary"><a href='.$loc.''.$id.'>Update</a></button>
-        <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'">Delete</a></button>
+       
         </td>
       </tr>';
   }
@@ -204,7 +204,6 @@ if($result){
         <td>'.$employee.'</td>
         <td>
         <button class="btn btn-primary"><a href='.$loc.''.$id.'>Update</a></button>
-        <button class="btn btn-danger"><a href="delete.php?deleteid='.$id.'">Delete</a></button>
         </td>
       </tr>';
   }
@@ -214,6 +213,7 @@ if($result){
 
 </tbody>
 </table>
+
   </div>
 </body>
 

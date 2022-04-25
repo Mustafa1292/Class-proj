@@ -6,12 +6,11 @@ if(isset($_POST['submit'])) {
   $Sender2=$_POST['senderl'];
   $Reciever=$_POST['receiver'];
   $Address=$_POST['Address'];
-  $OfficeLoc=$_POST['officeLoc'];
   $Status=$_POST['Status'];
 
 
-  $sql="insert into `parcel` (weight, senderf, senderl, receiver, outgoingLocation, office, status)
-  values('$Weight','$Sender1', '$Sender2','$Reciever', '$Address', '$OfficeLoc','$Status')";
+  $sql="insert into `parcel` (weight, senderf, senderl, receiver, outgoingLocation, status)
+  values('$Weight','$Sender1', '$Sender2','$Reciever', '$Address', '$Status')";
   $result=mysqli_query($con,$sql);
   
   
@@ -122,28 +121,12 @@ if(isset($_POST['submit'])) {
       <br/>
 
       <br />
-      
 <div>
-
-<div style = "position:relative; left:0px; top:-30px;">
-                <label for="officeLoc">Initial Office</label>
-                <div style = "position:relative; left:15px; top:45px;">
-                <select name="officeLoc"  id="officeLoc" required style="margin-left: 40%">
-                    <option value="Houston">Houston</option>
-                    <option value="San Antonio">San Antonio</option>
-                    <option value="El Paso">El Paso</option>
-                </select>
-                </div>
-            </div>
         
-
-            <div style = "position:relative; left:14px; top:30px;">
     
         <select id="Status" name="Status" required style="margin-left: 40%"> 
             <option value="In progress"> In progress</options> 
         </select> 
-
-</div>
 
         <!-- <input
           type="numer"

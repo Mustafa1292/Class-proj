@@ -3,20 +3,62 @@
 include 'connnect.php';
 $id=$_GET['updateid'];
 
+
+$sqll="Select * from `parcel` where packageID='$id'";
+
+
+
+$resultt=mysqli_query($con,$sqll);
+//echo "$uname";
+
+if($resultt){
+    $roww=mysqli_fetch_assoc($resultt);
+        //$_SESSION['id']=$roww['id'];
+        $_SESSION['weight']=$roww['weight'];
+        $_SESSION['receiver']=$roww['receiver'];
+        $_SESSION['address']=$roww['outgoingLocation'];
+        $_SESSION['office']=$roww['office'];
+        //$_SESSION['officeLoc']=$roww['officeLoc'];
+
+       
+}
+
+
 if(isset($_POST['submit'])) {
   $Weight=$_POST['Weight'];
   $Reciever=$_POST['receiver'];
   $Address=$_POST['Address'];
+  $office=$_POST['office'];
   $Status=$_POST['Status'];
 
-  $sql="update `parcel` set weight='$Weight', receiver='$Reciever', outgoingLocation='$Address',status='$Status' where packageID=$id";
+  $sql="update `parcel` set weight='$Weight', receiver='$Reciever', outgoingLocation='$Address', office='$office',status='$Status' where packageID=$id";
   $result=mysqli_query($con,$sql);
-  if($result) {
-      // echo "update successfully";
-    header('location:dashboard.php');
-  } else {
-     die(mysqli_error($con));
+
+  $uname=$_SESSION['uname'];
+
+  $sqll="Select * from `users` where emailUsers='$uname'";
+
+  
+
+  $resultt = mysqli_query($con, $sqll);
+  if ($resultt) {
+    $roww=mysqli_fetch_assoc($resultt);
+      $stat=$roww['isAdmin'];
   }
+
+
+if($result) {
+  //echo '$stat';
+  if($stat=='1'){
+    header('location:dashboard.php');
+  }
+  else{
+  header('location:employee.php');
+  }
+} else {
+   die(mysqli_error($con));
+}
+
 }
 
 ?>
@@ -58,6 +100,7 @@ if(isset($_POST['submit'])) {
         <label for="Weight" class="input"> Weight: </label>
         <input
           type="number"
+          value="<?php echo $_SESSION['weight']?>"
           id="Weight"
           name="Weight"
           placeholder="Weight"
@@ -69,6 +112,7 @@ if(isset($_POST['submit'])) {
         <label for="Receiver" class="input"> Receiver: </label>
         <input
           type="text"
+          value="<?php echo $_SESSION['receiver']?>"
           id="Receiver"
           name="receiver"
           placeholder="Receiver"
@@ -82,6 +126,7 @@ if(isset($_POST['submit'])) {
         <input
           type="text"
           id="Address"
+          value="<?php echo $_SESSION['address']?>"
           name="Address"
           placeholder="Shipping Address"
           required
@@ -90,8 +135,23 @@ if(isset($_POST['submit'])) {
       <br/>
 
       <br />
-<div>
+
+      <div>
+
+<div style = "position:relative; left:0px; top:-50px;">
+                <label for="office">New Office</label>
+                <div style = "position:relative; left:15px; top:45px;">
+                <select name="office"  id="officeLoc" required style="margin-left: 40%">
+                    <option value="Houston">Houston</option>
+                    <option value="San Antonio">San Antonio</option>
+                    <option value="El Paso">El Paso</option>
+                </select>
+                </div>
+            </div>
         
+            
+<div>
+<div style = "position:relative; left:14px; top:15px;">
     
         <select id="Status" name="Status" required style="margin-left: 40%"> 
             <option value="In progress"> In progress</options> 
@@ -105,6 +165,7 @@ if(isset($_POST['submit'])) {
           placeholder="Weight"
           required
         /> -->
+</div>
       </div>
 
       <!-- <div>
