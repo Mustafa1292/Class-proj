@@ -141,7 +141,7 @@ if($result){
             ?>
             <h3 style="color:red"> Delayed </h3> <?php
             //Add Button to Contact Us.
-            ?><h6 style="color:blue"> Contact Us </h6> <?php
+            ?><h6 style="color:blue"> Contact Us: 888-888-POS </h6> <?php
           }
           else{
             ?>
