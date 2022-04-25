@@ -9,7 +9,9 @@ On our administrative side we provide services for post office admins including 
 For our project we used PHP MyAdmin, MySQL, PHP, HTML and CSS. For web hosting we used Amazon AWS Services and hosted out website and database on an Ubuntu Virtual machine.
 
 ## Wesbite Roles:
-We have two roles on our website, employee and admin. Both employee and admin can view and edit user information such as the list of users and packages, but only the admin can remove users from the database. 
+We have three roles on our website, user, employee, and admin. Website users are our customers and can choose to have their packages shipped with our post office services. To sign up, users can enter their information on our sign in page, including and email and a password they create, and can see the status of their packages. The packages status includes a shipping location, if the package is on time or delayed, and if the user checking their packages has a packing being shipped to them. 
+
+On the company side, there are admin and employee accounts. Employee accounts has a location associated with it and can see the packages that are in that location. The employee account can view and update user accounts, and can only add packages and update packages in the database. The employee account cannot remove users from the databse or remove packages. The admin account has priviledges that allows them to add and delete user accounts, employee accounts, and packages. They are the most priviledged account on the website.
 
 ## Triggers:
 1.user_trg_delete - This triggers when a user profile is deleted from the user database. A log of this action is saved in the logs database table. 
