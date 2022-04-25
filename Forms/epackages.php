@@ -62,7 +62,7 @@ if(isset($_POST['submit'])){
 
 <!-- the table -->
 
-<button type="submit" name="submit" button class="btn btn-warning" style="margin: 5px"> Back to Dashboard </button>
+<button type="submit" name="submit" button class="btn btn-warning" style="margin: 5px"><a href="dashboard.php"> Back to Dashboard </a> </button>
 
 
 <table class="table">
