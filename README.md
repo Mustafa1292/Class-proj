@@ -29,7 +29,7 @@ Our logs recieve updates based on our triggers. The updates we check for are upd
 ## Extra Steps:
 There are no extra steps needed to access or use our website! Feel free to look around :)
 
-Preset Users:
+Preset Users:.
 Admin: email: ATest1@gmail.com | pass: 1234 | address: ATest1 St | Full Name: 'Admin Test1'
 Employee: email: ETest1@gmail.com | pass: 1234 | address: ETest1 St | Full Name: 'Employee Test1'
 When sending a package, please use the receivers full name.
