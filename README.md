@@ -14,9 +14,9 @@ We have three roles on our website, user, employee, and admin. Website users are
 On the company side, there are admin and employee accounts. Employee accounts has a location associated with it and can see the packages that are in that location. The employee account can view and update user accounts, and can only add packages and update packages in the database. The employee account cannot remove users from the databse or remove packages. The admin account has priviledges that allows them to add and delete user accounts, employee accounts, and packages. They are the most priviledged account on the website.
 
 ## Triggers:
-*1.user_trg_delete - This triggers when a user profile is deleted from the user database. A log of this action is saved in the logs database table. 
-*2.user_trg_insert - This triggers when a user profile is inserted to the user database. A log of this action is saved in the logs database table.
-*3.user_trg_update = This triggers when a user profile is updated in the user database. A log of this action is saved in the logs database table.
+* 1.user_trg_delete - This triggers when a user profile is deleted from the user database. A log of this action is saved in the logs database table. 
+* 2.user_trg_insert - This triggers when a user profile is inserted to the user database. A log of this action is saved in the logs database table.
+* 3.user_trg_update = This triggers when a user profile is updated in the user database. A log of this action is saved in the logs database table.
 
 
 ## Reports:
