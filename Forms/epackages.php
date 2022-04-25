@@ -38,7 +38,7 @@ include 'connnect.php';
 
 <!-- the table -->
 
-<button class="btn btn-warning" style="margin: 5px"><a href="./employee.php"> Back to Dashboard </button>
+<button class="btn btn-warning" style="margin: 5px"><a href="employee.php"> Back to Dashboard </button>
 
 
 <table class="table">
