@@ -22,3 +22,7 @@ Our reports check the number of users we have, the number of active packages, se
 
 ## Logs:
 Our logs recieve updates based on our triggers. The updates we check for are updates in the user database when a user is 1) updated, 2) inserted, and 3) deleted. 
+
+
+## Extra Steps:
+There are no extra steps needed to access or use our website! Feel free to look around :)
